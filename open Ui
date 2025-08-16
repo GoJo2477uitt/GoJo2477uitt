@@ -1,0 +1,94 @@
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local CoreGui = game:GetService("CoreGui")
+local UserInputService = game:GetService("UserInputService")
+
+local ScreenGui1 = Instance.new("ScreenGui")
+ScreenGui1.Name = "ButtonGui"
+ScreenGui1.Parent = CoreGui
+ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+local TextButton1 = Instance.new("TextButton")
+TextButton1.Parent = ScreenGui1
+TextButton1.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+TextButton1.Size = UDim2.new(0, 50, 0, 50)
+TextButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+TextButton1.BackgroundTransparency = 0.5
+TextButton1.Text = ""
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0.5, 0)
+UICorner.Parent = TextButton1
+
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Parent = TextButton1
+UIStroke.Color = Color3.fromRGB(0, 0, 0)
+UIStroke.Thickness = 2
+
+local Sound1 = Instance.new("Sound")
+Sound1.Parent = TextButton1
+Sound1.SoundId = "rbxassetid://12221967"
+Sound1.Volume = 1
+
+local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local tweenExpand = TweenService:Create(TextButton1, tweenInfo, {Size = UDim2.new(0, 55, 0, 55)})
+local tweenShrink = TweenService:Create(TextButton1, tweenInfo, {Size = UDim2.new(0, 50, 0, 50)})
+
+local isOn = false
+TextButton1.MouseButton1Click:Connect(function()
+    isOn = not isOn
+    if isOn then
+        TextButton1.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    else
+        TextButton1.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    end
+    Sound1:Play()
+    tweenExpand:Play()
+    wait(0.1)
+    tweenShrink:Play()
+    game:GetService("VirtualInputManager"):SendKeyEvent(true, 305, false, game)
+    game:GetService("VirtualInputManager"):SendKeyEvent(false, 305, false, game)
+end)
+
+-- 🔹 ระบบลากปุ่ม
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    TextButton1.Position = UDim2.new(
+        startPos.X.Scale, startPos.X.Offset + delta.X,
+        startPos.Y.Scale, startPos.Y.Offset + delta.Y
+    )
+end
+
+TextButton1.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or
+       input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = TextButton1.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+TextButton1.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or
+       input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and input == dragInput then
+        update(input)
+    end
+end)
