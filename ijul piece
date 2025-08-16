@@ -128,8 +128,8 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 
 local Window = Fluent:CreateWindow({
-    Title = "แก้ : Glue piece",
-    SubTitle = "แก้",
+    Title = " X hub : ijul piece",
+    SubTitle = "By X hub",
     TabWidth = 130,
     Size = UDim2.fromOffset(460, 380),
     Acrylic = false,
