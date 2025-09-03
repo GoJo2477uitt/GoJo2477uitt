@@ -59,7 +59,3 @@ button.MouseButton1Click:Connect(function()
         end)
     end
 end)
-
-Window:OnDestroy(function()
-    gui:Destroy()
-end)
