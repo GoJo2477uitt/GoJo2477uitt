@@ -1,0 +1,52 @@
+local TweenService = game:GetService("TweenService")
+
+local function bounce(button)
+    -- เด้งเล็กลง
+    local tween1 =
+        TweenService:Create(
+        button,
+        TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {Size = UDim2.new(0, 45, 0, 45)}
+    )
+
+    -- เด้งกลับใหญ่ขึ้นนิด
+    local tween2 =
+        TweenService:Create(
+        button,
+        TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {Size = UDim2.new(0, 55, 0, 55)}
+    )
+
+    -- กลับสู่ขนาดเดิม
+    local tween3 =
+        TweenService:Create(
+        button,
+        TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {Size = UDim2.new(0, 50, 0, 50)}
+    )
+
+    tween1:Play()
+    tween1.Completed:Connect(function()
+        tween2:Play()
+        tween2.Completed:Connect(function()
+            tween3:Play()
+        end)
+    end)
+end
+
+-- เพิ่มตอนกดปุ่ม
+button.MouseButton1Click:Connect(function()
+    bounce(button)
+
+    if opened == false then
+        opened = true
+        pcall(function()
+            Window:Close()
+        end)
+    else
+        opened = false
+        pcall(function()
+            Window:Open()
+        end)
+    end
+end)
