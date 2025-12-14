@@ -1,0 +1,70 @@
+import requests
+from datetime import datetime, timezone, timedelta
+
+# https://discord.com/api/webhooks/1449652777604087889/YtWq96AKQnY6fAvN-PkAwTke3NMy-Vd7ufGOLwCKZR1XgUDqCDOFAFTu5QLDI-SYXoIk
+# ดิสรวมช่องแจ้งเตือน ^^
+# https://discord.com/api/webhooks/1449625220032757820/uK9tw8P0xeKFFliLxctYufx0VXAblzNN4wSDR0W982s5-5JWIGYeTuxxcfxGKZwZhwiO
+# ดิสรอง
+# =====Webhook main=====
+WEBHOOK_URL = "https://discord.com/api/webhooks/1449652777604087889/YtWq96AKQnY6fAvN-PkAwTke3NMy-Vd7ufGOLwCKZR1XgUDqCDOFAFTu5QLDI-SYXoIk"
+
+def send_webhook(msg, color=15158332):
+    thai_time = datetime.now(timezone(timedelta(hours=7)))
+
+    data = {
+        "username": "แจ้งเตือน📢🚨",
+        "avatar_url": "https://cdn.discordapp.com/emojis/1449675747231924305.webp?size=96",
+
+        "content": f"@everyone 📢 {msg}",
+        "allowed_mentions": {
+            "parse": ["everyone"]
+        },
+
+        "embeds": [
+            {
+                "title": "🚨 Admin Notification",
+                "description": "ALL everyone",
+                "color": color,
+
+                "fields": [
+                    {
+                        "name": "📝 ข้อความ",
+                        "value": "```สวัสดีไอพวกหน้าหมีทั้งหลาย กูคือแฮกเกอร์😈😈```",
+                        "inline": False
+                    },
+                    {
+                        "name": "⏰ เวลา (ไทย)",
+                        "value": f"```{thai_time.strftime('%d/%m/%Y %H:%M:%S')}```",
+                        "inline": True
+                    },
+                    {
+                        "name": "💻 แหล่งที่มา",
+                        "value": "```Admin Python```",
+                        "inline": True
+                    }
+                ],
+
+                "image": {
+                    "url": "https://cdn.discordapp.com/attachments/1449624300280610849/1449730974345723956/image0.githumbnail          },
+
+                "thumbnail": {
+                    "url": "https://cdn.discordapp.com/emojis/1449732592965255268.webp?size=128"
+                },
+
+                "footer": {
+                    "text": "Powered by Admin",
+                    "icon_url": "https://cdn.discordapp.com/emojis/1449675747231924305.webp?size=96"
+                },
+
+                # ⏱️ timestamp ให้ตรงกับเวลาไทย
+                "timestamp": thai_time.isoformat()
+            }
+        ]
+    }
+
+    r = requests.post(WEBHOOK_URL, json=data)
+    print("ส่งแล้ว:", r.status_code)
+
+
+# ===== RUN =====
+send_webhook("แจ้งเตือนมาดูเร็วๆ 🤑")
