@@ -1,10 +1,15 @@
+local url = Unt
+if not url then
+    warn("Webhook (Unt) not found")
+    return
+end
+
 local Players = game:GetService("Players")
 local MarketplaceService = game:GetService("MarketplaceService")
 local HttpService = game:GetService("HttpService")
 
 local gamename = MarketplaceService:GetProductInfo(game.PlaceId).Name
 local gameid = game.PlaceId
-local jobid = game.JobId
 
 local req = (syn and syn.request) or http_request or request
 
@@ -23,44 +28,23 @@ Players.PlayerAdded:Connect(function(player)
                 color = 121793,
 
                 fields = {
-                    {
-                        name = "Game Name",
-                        value = "```"..gamename.."```"
-                    },
-                    {
-                        name = "Game ID",
-                        value = "```"..gameid.."```",
-                        inline = true
-                    },
-                    {
-                        name = "Job ID",
-                        value = "```"..jobid.."```",
-                        inline = true
-                    },
-                    {
-                        name = "Player",
-                        value = "```"..player.Name.."```",
-                        inline = true
-                    },
-                    {
-                        name = "UserId",
-                        value = "```"..player.UserId.."```",
-                        inline = true
-                    },
+                    { name = "Game Name", value = "```"..gamename.."```" },
+                    { name = "Game ID", value = "```"..gameid.."```", inline = true },
+                    { name = "Job ID", value = "```"..game.JobId.."```", inline = true },
+                    { name = "Player", value = "```"..player.Name.."```", inline = true },
+                    { name = "UserId", value = "```"..player.UserId.."```", inline = true },
                     {
                         name = "Profile",
                         value = "```https://www.roblox.com/users/"..player.UserId.."/profile```"
                     }
                 },
 
-                -- 🖼️ รูปใหญ่
                 image = {
-                    url = "https://cdn.discordapp.com/emojis/1449778405523591270.webp?size=64"
+                    url = "https://cdn.discordapp.com/attachments/1449624300280610849/1450103210525327481/pain-naruto.gif"
                 },
 
-                -- 🔲 รูปเล็ก
                 thumbnail = {
-                    url = "https://cdn.discordapp.com/emojis/932252435102175254.webp?size=128"
+                    url = "https://cdn.discordapp.com/emojis/1449778405523591270.webp?size=128"
                 },
 
                 footer = {
