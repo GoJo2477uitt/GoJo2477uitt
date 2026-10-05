@@ -1,0 +1,912 @@
+if game.PlaceId == 4480809144 then
+
+local w = game:GetService("Workspace")
+
+local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
+local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
+local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
+
+local Window = Library:CreateWindow({
+    Title = "quantum Hub",
+    Footer = "Made by VoidscriptZ",
+    Icon = nil,
+    NotifySide = "Right",
+    CornerRadius = 13,
+    SidebarCompactWidth = 200,
+    Compact = true,
+    DisableSearch = false,
+    ToggleKeybind = Enum.KeyCode.M,
+    Size = UDim2.fromOffset(735,550)
+})
+
+Window:SetSidebarWidth(230)
+
+local Main = Window:AddTab({
+    Name = "Main",
+    Description = "Main features",
+    Icon = "house"
+})
+
+local Misc = Window:AddTab({
+    Name = "Misc",
+    Description = "OP Features",
+    Icon = "gamepad"
+})
+
+local Logs = Window:AddTab({
+    Name = "Logs",
+    Description = "Announcement",
+    Icon = "circle-alert"
+})
+
+local Other = Window:AddTab({
+    Name = "Other",
+    Description = "Other Script",
+    Icon = "gamepad-2"
+})
+
+ThemeManager:SetLibrary(Library)
+
+local CustomTheme = {
+    BackgroundColor = Color3.fromRGB(15, 15, 15), 
+    MainColor       = Color3.fromRGB(10, 10, 10),   -- Main panels/buttons
+    AccentColor     = Color3.fromRGB(150, 200, 255),  -- Rift-style **orange highlights**
+    OutlineColor    = Color3.fromRGB(120, 190, 255),   -- Dark gray outlines
+    FontColor       = Color3.fromRGB(250, 250, 250) -- Bright white text
+}
+
+ThemeManager:SetDefaultTheme(CustomTheme)
+
+ThemeManager:ThemeUpdate()
+
+local itemgroup = Main:AddLeftGroupbox("Item Giver", "hammer")
+local esgroup = Main:AddRightGroupbox("Instant Escape", "zap")
+
+local Miscgroup = Misc:AddLeftGroupbox("OP", "rocket")
+
+local Espgroup = Misc:AddRightGroupbox("ESP", "eye")
+
+local Logsgroup = Logs:AddLeftGroupbox("Tips", "circle-alert")
+
+local logsgroups = Logs:AddRightGroupbox("Subscribe", "youtube")
+
+local scriptstatus = Logs:AddRightGroupbox("Script Status", "triangle-alert")
+
+local otherscript = Other:AddLeftGroupbox("Other Script", "flame")
+
+local otherscripts = Other:AddRightGroupbox("Server", "server")
+
+local Workspace = game:GetService("Workspace")
+
+local function GiveItem(itemName)
+    for _, v in ipairs(Workspace:GetDescendants()) do
+        if v:IsA("RemoteEvent") and v.Name == "InteractRemote" then
+            local parent = v.Parent
+            if parent and parent.Name == itemName then
+                v:FireServer()
+                return
+            end
+
+            local toolName = parent:FindFirstChild("Toolname")
+            if toolName and toolName:IsA("StringValue") and toolName.Value == itemName then
+                v:FireServer()
+                return
+            end
+        end
+    end
+end
+
+itemgroup:AddButton({
+    Text = "Get Shotgun",
+    Func = function()
+        GiveItem("Shotgun")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Screwdriver",
+    Func = function()
+        GiveItem("Screwdriver")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Battery",
+    Func = function()
+        GiveItem("Battery")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Hammer",
+    Func = function()
+        GiveItem("Hammer")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Padlock key",
+    Func = function()
+        GiveItem("Padlock key")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Padlock code",
+    Func = function()
+        GiveItem("Padlock code")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Cutting pliers",
+    Func = function()
+        GiveItem("Cutting pliers")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Master key",
+    Func = function()
+        GiveItem("Master key")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Engine part",
+    Func = function()
+        GiveItem("Engine part")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Spark plug",
+    Func = function()
+        GiveItem("Spark plug")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Wrench",
+    Func = function()
+        GiveItem("Wrench")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Car battery",
+    Func = function()
+        GiveItem("Car battery")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Car key",
+    Func = function()
+        GiveItem("Car key")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Gasoline can",
+    Func = function()
+        GiveItem("Gasoline can")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Weapon key",
+    Func = function()
+        GiveItem("Weapon key")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Melon",
+    Func = function()
+        GiveItem("Melon")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Special key",
+    Func = function()
+        GiveItem("Special key")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Crossbow",
+    Func = function()
+        GiveItem("Crossbow")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Spider key",
+    Func = function()
+        GiveItem("Spider key")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Note",
+    Func = function()
+        GiveItem("Note")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Teddy",
+    Func = function()
+        GiveItem("Teddy")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Safekey",
+    Func = function()
+        GiveItem("Safekey")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Freeze trap",
+    Func = function()
+        GiveItem("Freeze trap")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get SlendrinaMask",
+    Func = function()
+        GiveItem("SlendrinaMask")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Wooden stick",
+    Func = function()
+        GiveItem("Wooden stick")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Meat",
+    Func = function()
+        GiveItem("Meat")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Remote control",
+    Func = function()
+        GiveItem("Remote control")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Pepper spray",
+    Func = function()
+        GiveItem("Pepper spray")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Winch handle",
+    Func = function()
+        GiveItem("Winch handle")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Bird seed",
+    Func = function()
+        GiveItem("Bird seed")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Book",
+    Func = function()
+        GiveItem("Book")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Rusty padlock key",
+    Func = function()
+        GiveItem("Rusty padlock key")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Playhouse key",
+    Func = function()
+        GiveItem("Playhouse key")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Wheel crank",
+    Func = function()
+        GiveItem("Wheel crank")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Cogwheel (Orange)",
+    Func = function()
+        GiveItem("Cogwheel (Orange)")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Cogwheel (Red)",
+    Func = function()
+        GiveItem("Cogwheel (Red)")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get Chain cutter",
+    Func = function()
+        GiveItem("Chain cutter")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get A piece of a painting (1)",
+    Func = function()
+        GiveItem("A piece of a painting (1)")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get A piece of a painting (2)",
+    Func = function()
+        GiveItem("A piece of a painting (2)")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get A piece of a painting (3)",
+    Func = function()
+        GiveItem("A piece of a painting (3)")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get A piece of a painting (4)",
+    Func = function()
+        GiveItem("A piece of a painting (4)")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get A part of a shotgun (1)",
+    Func = function()
+        GiveItem("A part of a shotgun (1)")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get A part of a shotgun (2)",
+    Func = function()
+        GiveItem("A part of a shotgun (2)")
+    end
+})
+
+itemgroup:AddButton({
+    Text = "Get A part of a shotgun (3)",
+    Func = function()
+        GiveItem("A part of a shotgun (3)")
+    end
+})
+
+Miscgroup:AddButton({
+    Text = "Infinite Ammo",
+    Func = function()
+        local plr = game:GetService("Players").LocalPlayer
+local b = plr.Backpack
+
+for i, v in pairs(b:GetChildren()) do
+    if v.Name == "CrossbowAmmo" or v.Name == "PepperSprayAmmo" or v.Name == "ShotgunAmmo" then
+        
+        if v.Value <= 0 then
+            v.Value = 1
+        end
+
+        v:GetPropertyChangedSignal("Value"):Connect(function()
+            if v.Value <= 0 then
+                v.Value = 1
+            end
+        end)
+    end
+end
+    end
+})
+
+Miscgroup:AddButton({
+    Text = "Anti Fall",
+    Func = function()
+local plr = game:GetService("Players").LocalPlayer
+local playerGui = plr:WaitForChild("PlayerGui")
+
+local function destroyFallSystem()
+    for _, obj in pairs(playerGui:GetDescendants()) do
+        if obj.Name == "FallSystem" then
+            obj:Destroy()
+        end
+    end
+end
+
+destroyFallSystem()
+
+playerGui.DescendantAdded:Connect(function(descendant)
+    if descendant.Name == "FallSystem" then
+        descendant:Destroy()
+    end
+end)
+end
+})
+
+esgroup:AddButton({
+    Text = "Door Escape",
+    Func = function()
+        local player = game.Players.LocalPlayer
+local hrp = player.Character.HumanoidRootPart
+
+for i = 1, 6 do
+    local preset = workspace:FindFirstChild("Preset" .. i)
+    if preset 
+        and preset:FindFirstChild("Locks")
+        and preset.Locks:FindFirstChild("Ending")
+        and preset.Locks.Ending:FindFirstChild("Ending1") then
+
+        local fire = preset.Locks.Ending.Ending1
+        firetouchinterest(hrp, fire, 0)
+        firetouchinterest(hrp, fire, 1)
+    end
+end
+    end
+})
+
+esgroup:AddButton({
+    Text = "Door Escape with Teddy",
+    Func = function()
+        local player = game.Players.LocalPlayer
+local hrp = player.Character.HumanoidRootPart
+
+for i = 1, 6 do
+    local preset = workspace:FindFirstChild("Preset" .. i)
+    if preset 
+        and preset:FindFirstChild("Locks")
+        and preset.Locks:FindFirstChild("Ending")
+        and preset.Locks.Ending:FindFirstChild("Ending2") then
+
+        local fire = preset.Locks.Ending.Ending2
+        firetouchinterest(hrp, fire, 0)
+        firetouchinterest(hrp, fire, 1)
+    end
+end
+    end
+})
+
+esgroup:AddButton({
+    Text = "Car Escape",
+    Func = function()
+        local player = game.Players.LocalPlayer
+local hrp = player.Character.HumanoidRootPart
+
+for i = 1, 6 do
+    local preset = workspace:FindFirstChild("Preset" .. i)
+    if preset 
+        and preset:FindFirstChild("Locks")
+        and preset.Locks:FindFirstChild("Ending")
+        and preset.Locks.Ending:FindFirstChild("Ending3") then
+
+        local fire = preset.Locks.Ending.Ending3
+        firetouchinterest(hrp, fire, 0)
+        firetouchinterest(hrp, fire, 1)
+    end
+end
+    end
+})
+
+esgroup:AddButton({
+    Text = "Sewer Escape",
+    Func = function()
+        local player = game.Players.LocalPlayer
+local hrp = player.Character.HumanoidRootPart
+
+for i = 1, 6 do
+    local preset = workspace:FindFirstChild("Preset" .. i)
+    if preset 
+        and preset:FindFirstChild("Locks")
+        and preset.Locks:FindFirstChild("Ending")
+        and preset.Locks.Ending:FindFirstChild("Ending4") then
+
+        local fire = preset.Locks.Ending.Ending4
+        firetouchinterest(hrp, fire, 0)
+        firetouchinterest(hrp, fire, 1)
+    end
+end
+    end
+})
+
+Miscgroup:AddButton({
+    Text = "Kill Granny",
+    Func = function()
+   for i = 1, 6 do
+    local preset = workspace:FindFirstChild("Preset" .. i)
+    if preset then
+        local args = {
+            preset:WaitForChild("Locks"):WaitForChild("Granny"):WaitForChild("Zombie"),
+            Instance.new("Part", nil)
+        }
+        game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("MainGUI"):WaitForChild("ScreenGUI"):WaitForChild("ShotgunGUI"):WaitForChild("EnemyDamage"):FireServer(unpack(args))
+    end
+end
+end
+})
+
+local MyToggle = Miscgroup:AddToggle("MyToggle", {
+    Text = "Auto Kill Granny",
+    Default = false,
+})
+
+getgenv().AutoKill = false
+
+function AutoKill()
+    while getgenv().AutoKill do
+        wait(0.3)
+        for i = 1, 6 do
+            local preset = workspace:FindFirstChild("Preset" .. i)
+            if preset then
+                local args = {
+                    preset:WaitForChild("Locks"):WaitForChild("Granny"):WaitForChild("Zombie"),
+                    Instance.new("Part", nil)
+                }
+                game:GetService("Players").LocalPlayer
+                    :WaitForChild("PlayerGui")
+                    :WaitForChild("MainGUI")
+                    :WaitForChild("ScreenGUI")
+                    :WaitForChild("ShotgunGUI")
+                    :WaitForChild("EnemyDamage")
+                    :FireServer(unpack(args))
+            end
+        end
+    end
+end
+
+MyToggle:OnChanged(function(state)
+    getgenv().AutoKill = state
+    if state then
+        spawn(AutoKill)
+    end
+end)
+
+local LabelOptions = {
+    Text = "Tips: You can Execute the Script with no need to Key system and its [Keyless]",
+    DoesWrap = true
+}
+ 
+local Label = Logsgroup:AddLabel(LabelOptions)
+
+local LabelOptions = {
+    Text = [[
+Owner of Script: VoidscriptZ 
+UI Library Used: Obsidian UI Lib
+Thanks for using my Script !
+]],
+    DoesWrap = true
+}
+ 
+local Label = Logsgroup:AddLabel(LabelOptions)
+
+local LabelOptions = {
+    Text = "Please Support my Youtube Channel the link in below.",
+    DoesWrap = true
+}
+ 
+local Label = logsgroups:AddLabel(LabelOptions)
+
+logsgroups:AddButton({
+    Text = "Copy Youtube Link",
+    Func = function()
+        setclipboard("https://m.youtube.com/channel/UCTzypy2MR1aefYFXHv8I9LA Name YT: VoidscriptZ")
+        Library:Notify({
+    Title = "Successfully",
+    Description = "Successfully Copy the link!",
+    Time = 0.7,
+})
+    end
+})
+
+local LabelOptions = {
+    Text = [[
+The script is 🟢
+- 🟢 Script is UP
+- 🔴 Script is Down
+]],
+    DoesWrap = true
+}
+
+local Label = scriptstatus:AddLabel(LabelOptions)
+
+local Workspace = game:GetService("Workspace")
+
+getgenv().GrannyESPEnabled = false
+
+local function ApplyGrannyESP(model)
+    if not model:IsA("Model") then return end
+    if model.Name ~= "Granny" then return end
+    if model:FindFirstChild("GrannyESP") then return end
+
+    local esp = Instance.new("Highlight")
+    esp.Name = "GrannyESP"
+    esp.FillColor = Color3.fromRGB(255, 0, 0)
+    esp.OutlineColor = Color3.fromRGB(255, 255, 255)
+    esp.OutlineTransparency = 0.1
+    esp.Adornee = model
+    esp.Parent = model
+end
+
+local function EnableGrannyESP()
+    for _, v in ipairs(Workspace:GetDescendants()) do
+        ApplyGrannyESP(v)
+    end
+end
+
+local function DisableGrannyESP()
+    for _, v in ipairs(Workspace:GetDescendants()) do
+        if v:IsA("Model") and v.Name == "Granny" then
+            local esp = v:FindFirstChild("GrannyESP")
+            if esp then
+                esp:Destroy()
+            end
+        end
+    end
+end
+
+Workspace.DescendantAdded:Connect(function(desc)
+    if getgenv().GrannyESPEnabled then
+        ApplyGrannyESP(desc)
+    end
+end)
+
+local GrannyESP_Toggle = Espgroup:AddToggle("GrannyESP", {
+    Text = "ESP Granny",
+    Default = false,
+})
+
+GrannyESP_Toggle:OnChanged(function(state)
+    getgenv().GrannyESPEnabled = state
+
+    if state then
+        EnableGrannyESP()
+    else
+        DisableGrannyESP()
+    end
+end)
+
+local Workspace = game:GetService("Workspace")
+
+getgenv().SlenESPEnabled = false
+
+local function ApplySlenESP(model)
+    if not model:IsA("Model") then return end
+    if model.Name ~= "SlendrinaMother" then return end
+    if model:FindFirstChild("Slen_ESP") then return end
+
+    local esp = Instance.new("Highlight")
+    esp.Name = "Slen_ESP"
+    esp.FillColor = Color3.fromRGB(255, 0, 0)
+    esp.OutlineColor = Color3.fromRGB(255, 255, 255)
+    esp.OutlineTransparency = 0.1
+    esp.Adornee = model
+    esp.Parent = model
+end
+
+local function EnableSlenESP()
+    for _, v in ipairs(Workspace:GetDescendants()) do
+        ApplySlenESP(v)
+    end
+end
+
+local function DisableSlenESP()
+    for _, v in ipairs(Workspace:GetDescendants()) do
+        if v:IsA("Model") and v.Name == "SlendrinaMother" then
+            local esp = v:FindFirstChild("Slen_ESP")
+            if esp then
+                esp:Destroy()
+            end
+        end
+    end
+end
+
+Workspace.DescendantAdded:Connect(function(desc)
+    if getgenv().SlenESPEnabled then
+        ApplySlenESP(desc)
+    end
+end)
+
+local SlenESP_Toggle = Espgroup:AddToggle("GrannyESP", {
+    Text = "ESP Slendrina Mother",
+    Default = false,
+})
+
+SlenESP_Toggle:OnChanged(function(state)
+    getgenv().SlenESPEnabled = state
+
+    if state then
+        EnableSlenESP()
+    else
+        DisableSlenESP()
+    end
+end)
+
+otherscript:AddButton({
+    Text = "Load Infinite Yield",
+    Func = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/edgeiy/infiniteyield/master/source", true))()
+    end
+})
+
+otherscript:AddButton({
+    Text = "Load Fly Script",
+    Func = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/6rNxaNXY", true))()
+    end
+})
+
+otherscript:AddButton({
+    Text = "Load TP Tool",
+    Func = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/Zynpj9HN", true))()
+    end
+})
+
+Library.ShowToggleFrameInKeybinds = true
+
+Library.ShowCustomCursor = false
+
+Logsgroup:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", {
+    Default = "M",
+    NoUI = false,
+    Text = "Menu Keybind"
+})
+
+local LabelOptions = {
+    Text = "You're in Granny Multiplayer | Chapter 1",
+    DoesWrap = true
+}
+
+local Label = scriptstatus:AddLabel(LabelOptions)
+
+local OpenConnection
+
+local function destroyWorkspaceOpen()
+    for _, obj in ipairs(workspace:GetChildren()) do
+        if obj.Name == "Open" then
+            obj:Destroy()
+        end
+    end
+end
+
+local DestroyOpenToggle = Miscgroup:AddToggle("DestroyOpen", {
+    Text = "Auto Destroy Bear trap",
+    Default = false,
+})
+
+DestroyOpenToggle:OnChanged(function(state)
+    if state then
+        destroyWorkspaceOpen()
+
+        OpenConnection = workspace.ChildAdded:Connect(function(child)
+            if child.Name == "Open" then
+                task.wait()
+                child:Destroy()
+            end
+        end)
+    else
+        if OpenConnection then
+            OpenConnection:Disconnect()
+            OpenConnection = nil
+        end
+    end
+end)
+
+otherscripts:AddButton({
+    Text = "Rejoin",
+    Func = function()
+        local TeleportService = game:GetService("TeleportService")
+
+local function rejoinServer()
+    local placeId = game.PlaceId
+    local jobId = game.JobId
+    
+    print(" Rejoining server...")
+    
+    local success, errorMsg = pcall(function()
+        TeleportService:TeleportToPlaceInstance(placeId, jobId)
+    end)
+    
+    if success then
+        print(" Rejoin initiated!")
+    else
+        print(" Rejoin failed:", errorMsg)
+    end
+end
+
+rejoinServer()
+    end
+})
+
+otherscripts:AddButton({
+    Text = "Lowest Server",
+    Func = function()
+        local TeleportService = game:GetService("TeleportService")
+local HttpService = game:GetService("HttpService")
+
+local function findEmptyPublicServer()
+    local placeId = game.PlaceId
+    
+    local success, servers = pcall(function()
+        local response = game:HttpGet("https://games.roblox.com/v1/games/" .. placeId .. "/servers/Public?sortOrder=Asc&limit=100")
+        return HttpService:JSONDecode(response)
+    end)
+    
+    if not success or not servers then
+        warn("Failed to get server list!")
+        return
+    end
+    
+    for _, server in pairs(servers.data) do
+        if (server.playing == 1 or server.playing == 2) and server.id ~= game.JobId then
+            print(" Found nearly empty server with " .. server.playing .. " player(s)!")
+            print(" Teleporting...")
+            
+            pcall(function()
+                TeleportService:TeleportToPlaceInstance(placeId, server.id)
+            end)
+            break
+        end
+    end
+end
+
+findEmptyPublicServer()
+    end
+})
+
+otherscripts:AddButton({
+    Text = "Server hop",
+    Func = function()
+        local TeleportService = game:GetService("TeleportService")
+local HttpService = game:GetService("HttpService")
+
+local function randomHop()
+    local placeId = game.PlaceId
+    
+    local servers = HttpService:JSONDecode(game:HttpGet(
+        "https://games.roblox.com/v1/games/" .. placeId .. "/servers/Public?limit=50"
+    ))
+    
+    for i = 1, 50 do
+        local randomIndex = math.random(1, #servers.data)
+        local randomServer = servers.data[randomIndex]
+        
+        if randomServer.id ~= game.JobId then
+            TeleportService:TeleportToPlaceInstance(placeId, randomServer.id)
+            break
+        end
+    end
+end
+
+randomHop()
+    end
+})
+end
